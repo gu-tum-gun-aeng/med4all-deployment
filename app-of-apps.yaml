@@ -11,9 +11,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/develop
+    path: apps
     repoURL: https://github.com/gu-tum-gun-aeng/med4all-deployment
-    targetRevision: develop
+    targetRevision: main
   syncPolicy:
     automated:
       selfHeal: true
