@@ -13,7 +13,6 @@ spec:
       labels:
         k8s-app: fluentd-influx
     spec:
-      serviceAccountName: fluentd
       terminationGracePeriodSeconds: 30
       # Because the image's entrypoint requires to write on /fluentd/etc but we mount configmap there which is read-only,
       # this initContainers workaround or other is needed.
