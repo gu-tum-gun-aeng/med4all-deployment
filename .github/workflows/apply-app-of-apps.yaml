@@ -1,0 +1,43 @@
+name: apply-app-of-apps
+on:
+  workflow_dispatch
+jobs:
+  apply-app-of-apps:
+    name: apply-app-of-apps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: azure/setup-kubectl@v1
+        id: install
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: ap-southeast-1
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - uses: clowdhaus/argo-cd-action/@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          command: version
+          options: --client
+
+      - name: Get kubeconfig for public cluster
+        run: aws eks --region ap-southeast-1 update-kubeconfig --name med4all-eks-cluster
+
+      - name: Get kubeconfig for local cluster and use as current context
+        run: aws eks --region ap-southeast-1 update-kubeconfig --name med4all-local-eks-cluster
+
+      - name: Login to ArgoCd via kubernetes port forward
+        run: argocd login --username admin --password $( kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo) --plaintext --port-forward --port-forward-namespace argocd
+
+      - name: Add med4all-eks-cluster to argocd
+        run: argocd cluster add arn:aws:eks:ap-southeast-1:950124295708:cluster/med4all-eks-cluster --plaintext --port-forward-namespace argocd --upsert
+
+      - name: Apply app-of-apps manifest
+        run: kubectl apply -f app-of-apps.yaml

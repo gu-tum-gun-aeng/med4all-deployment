@@ -1,0 +1,29 @@
+name: delete-app-of-apps
+on:
+  workflow_dispatch
+jobs:
+  delete-app-of-apps:
+    name: delete-app-of-apps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Delete app-of-apps manifest,
+        uses: ianbelcher/eks-kubectl-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ap-southeast-1
+          cluster_name: med4all-eks-cluster
+          args: delete -f app-of-apps.yaml
+
+      - name: Delete app-of-apps manifest
+        uses: ianbelcher/eks-kubectl-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ap-southeast-1
+          cluster_name: med4all-local-eks-cluster
+          args: delete -f app-of-apps.yaml

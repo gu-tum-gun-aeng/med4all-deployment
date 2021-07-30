@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-secret-operator
+  labels:
+    app: aws-secret-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: aws-secret-operator
+  template:
+    metadata:
+      labels:
+        name: aws-secret-operator
+        app: aws-secret-operator
+    spec:
+      serviceAccountName: aws-secret-operator
+      containers:
+        - name: aws-secret-operator
+          # Replace this with the built image name
+          image: mumoshu/aws-secret-operator:0.3.3
+          ports:
+          - containerPort: 60000
+            name: metrics
+          command:
+          - aws-secret-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              value: ""
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "aws-secret-operator"
+            - name: AWS_REGION
+              value: ap-southeast-1

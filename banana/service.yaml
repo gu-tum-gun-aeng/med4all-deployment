@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: banana-service
+  namespace: default
+spec:
+  selector:
+    app: banana
+  ports:
+    - port: 5678 # Default port for image
