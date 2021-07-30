@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluentd-influx
+  namespace: fluentd-logs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: fluentd-influx
+  template:
+    metadata:
+      labels:
+        k8s-app: fluentd-influx
+    spec:
+      serviceAccountName: fluentd
+      terminationGracePeriodSeconds: 30
+      # Because the image's entrypoint requires to write on /fluentd/etc but we mount configmap there which is read-only,
+      # this initContainers workaround or other is needed.
+      # See https://github.com/fluent/fluentd-kubernetes-daemonset/issues/90
+      initContainers:
+        - name: copy-fluentd-config
+          image: busybox
+          command: ['sh', '-c', 'cp /config-volume/..data/* /fluentd/etc']
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config-volume
+            - name: fluentdconf
+              mountPath: /fluentd/etc
+        - name: update-log-driver
+          image: busybox
+          command: ['sh','-c','']
+      containers:
+        - name: fluentd-influx
+          image: 950124295708.dkr.ecr.ap-southeast-1.amazonaws.com/avantis-fluentd:v0.0.1
+          resources:
+            limits:
+              memory: 400Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config-volume
+            - name: fluentdconf
+              mountPath: /fluentd/etc
+          env:
+            - name: INFLUX_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: influx-config
+                    key: influx-token
+      volumes:
+        - name: config-volume
+          configMap:
+            name: fluentd-config-v1
+        - name: fluentdconf
+          emptyDir: {}

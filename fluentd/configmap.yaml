@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-config-v1
+  namespace: fluentd-logs
+  labels:
+    k8s-app: fluentd-cloudwatch
+data:
+  fluent.conf: |
+    <source>
+      @type kafka
+
+      brokers b-1.med4all-msk-clust.3cspu2.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.3cspu2.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-3.med4all-msk-clust.3cspu2.c3.kafka.ap-southeast-1.amazonaws.com:9094
+      ssl_ca_certs_from_system true
+      topics LoggingTopic
+      format json
+    </source>
+
+    <filter LoggingTopic>
+      @type record_transformer
+      enable_ruby
+      <record>
+        type ${record["log"].include?("elapsed_milliseconds") ? "metric" : "log"}
+        hostname ${record["log_processed"]["hostname"]}
+        http_route ${record["log_processed"]["http.route"]}
+        http_target ${record["log_processed"]["http.target"]}
+        app_name ${record["log_processed"]["name"]}
+        app_target ${record["log_processed"]["target"]}
+        elapsed_milliseconds ${record["log_processed"]["elapsed_milliseconds"]}
+      </record>
+    </filter>
+
+    <match LoggingTopic>
+      @type rewrite_tag_filter
+      <rule>
+        key type
+        pattern ^metric$
+        tag metric
+      </rule>
+      <rule>
+        key type
+        pattern ^log$
+        tag log
+      </rule>
+    </match>
+
+    <match log>
+      @type "aws-elasticsearch-service"
+      @log_level debug
+      type_name "access_log"
+      logstash_format false
+      <buffer tag>
+        flush_interval 5s
+      </buffer>
+      <endpoint>
+        url https://vpc-elasticsearch-ecea8fa-6hkkshuaetkuw2kuquxr44p4gq.ap-southeast-1.es.amazonaws.com
+        region ap-southeast-1
+      </endpoint>
+    </match>
+
+    <match metric>
+      @type copy
+      <store>
+        @type "aws-elasticsearch-service"
+        @log_level debug
+        type_name "access_log"
+        logstash_format false
+        <buffer tag>
+          flush_interval 5s
+        </buffer>
+        <endpoint>
+          url https://vpc-elasticsearch-ecea8fa-6hkkshuaetkuw2kuquxr44p4gq.ap-southeast-1.es.amazonaws.com
+          region ap-southeast-1
+        </endpoint>
+      </store>
+      <store>
+        @type influxdb2
+        url                     https://us-west-2-1.aws.cloud2.influxdata.com
+        token                   "#{ENV['INFLUX_TOKEN']}"
+        bucket                  med4all
+        org                     admin-avantis@ava.fund
+        measurement             elapsed_milliseconds
+        tag_keys                ["hostname","http_route","http_target","app_name","app_target"]
+        field_keys              ["elapsed_milliseconds"]
+      </store>
+    </match>
