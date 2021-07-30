@@ -45,11 +45,11 @@ spec:
             - name: fluentdconf
               mountPath: /fluentd/etc
           env:
-            - name: INFLUX_TOKEN
-                valueFrom:
-                  secretKeyRef:
-                    name: influx-config
-                    key: influx-token
+          - name: INFLUX_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: influx-config
+                key: influx-token
       volumes:
         - name: config-volume
           configMap:
