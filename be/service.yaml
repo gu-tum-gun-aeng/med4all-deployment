@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: med4all-be-service
+  namespace: default
+spec:
+  selector:
+    app: med4all-be
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
