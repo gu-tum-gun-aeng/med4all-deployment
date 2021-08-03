@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: med4all-be-deployment
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    name: arn:aws:eks:ap-southeast-1:950124295708:cluster/med4all-eks-cluster
+  project: default
+  source:
+    path: med4all-be
+    repoURL: https://github.com/gu-tum-gun-aeng/med4all-deployment
+    targetRevision: main
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

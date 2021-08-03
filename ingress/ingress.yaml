@@ -11,10 +11,10 @@ spec:
     - host: api.gu-aeng.ninja
       http:
         paths:
-          - path: /banana/?(.*)
+          - path: /?(.*)
             pathType: Prefix
             backend:
               service:
-                name: banana-service
+                name: med4all-be-service
                 port:
-                  number: 5678
+                  number: 80
