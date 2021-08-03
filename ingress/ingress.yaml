@@ -15,6 +15,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: avantis-cerberus-service
+                name: med4all-be-service
                 port:
                   number: 80
