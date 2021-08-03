@@ -18,3 +18,16 @@ spec:
           image: 950124295708.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-be:v0.2.2
           ports:
             - containerPort: 8000
+
+          env:
+          - name: S3_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-secret-config
+                key: aws_access_key_id
+
+          - name: S3_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-secret-config
+                key: aws_secret_access_key
