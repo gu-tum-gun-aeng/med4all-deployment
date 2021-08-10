@@ -9,8 +9,7 @@ data:
   fluent.conf: |
     <source>
       @type kafka
-
-      brokers b-1.med4all-msk-clust.3cspu2.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.3cspu2.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-3.med4all-msk-clust.3cspu2.c3.kafka.ap-southeast-1.amazonaws.com:9094
+      b-3.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-1.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094
       ssl_ca_certs_from_system true
       topics LoggingTopic
       format json
@@ -53,7 +52,7 @@ data:
         flush_interval 5s
       </buffer>
       <endpoint>
-        url https://vpc-elasticsearch-ecea8fa-6hkkshuaetkuw2kuquxr44p4gq.ap-southeast-1.es.amazonaws.com
+        url https://vpc-elasticsearch-2ae3cb7-zastc6dcwam6cmeyfzm4iowiey.ap-southeast-1.es.amazonaws.com
         region ap-southeast-1
       </endpoint>
     </match>
@@ -69,7 +68,7 @@ data:
           flush_interval 5s
         </buffer>
         <endpoint>
-          url https://vpc-elasticsearch-ecea8fa-6hkkshuaetkuw2kuquxr44p4gq.ap-southeast-1.es.amazonaws.com
+          url https://vpc-elasticsearch-2ae3cb7-zastc6dcwam6cmeyfzm4iowiey.ap-southeast-1.es.amazonaws.com
           region ap-southeast-1
         </endpoint>
       </store>
