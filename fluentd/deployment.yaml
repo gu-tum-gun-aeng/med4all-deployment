@@ -31,7 +31,7 @@ spec:
           command: ['sh','-c','']
       containers:
         - name: fluentd-influx
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-fluentd:v0.0.2
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-fluentd:v0.0.1
           resources:
             limits:
               memory: 400Mi
