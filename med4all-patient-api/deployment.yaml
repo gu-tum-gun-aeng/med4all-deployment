@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: med4all-patient-api
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: med4all-patient-api
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: med4all-patient-api
+    spec:
+      containers:
+        - name: med4all-patient-api-pod
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-patient-api:v0.0.2
+          ports:
+            - containerPort: 8000
+
+          env:
+            - name: HOST
+              value: 0.0.0.0
+            - name: PORT
+              value: 8000
