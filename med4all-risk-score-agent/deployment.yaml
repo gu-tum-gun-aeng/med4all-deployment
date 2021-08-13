@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: med4all-risk-score-agent
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: med4all-risk-score-agent
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: med4all-risk-score-agent
+    spec:
+      containers:
+        - name: med4all-risk-score-agent-pod
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-risk-score-agent:v0.0.10
+
+          env:
+            - name: KAFKA_BROKER_LIST
+              value: b-1.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-3.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094
+            - name: KAFKA_GROUP_ID
+              value: med4all-risk-score-agent
+            - name: RISK_SCORE_API_URL
+              value: https://pedsanam.ydm.family/pedsanam/label_score
+            - name: RISK_SCORE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: risk-score-secret-config
+                  key: api-key
