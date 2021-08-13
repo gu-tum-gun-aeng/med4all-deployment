@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-waiting-list-agent-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-waiting-list-agent:v0.1.0
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-waiting-list-agent:v0.1.1
 
           env:
             - name: KAFKA_BROKER_LIST
@@ -23,4 +23,9 @@ spec:
             - name: KAFKA_GROUP_ID
               value: med4all-waiting-list-agent
             - name: WAITING_LIST_API_URL
-              value: http://localhost:8999/ps/patient/create
+              value: https://covid-waiting-list-y6gdj3xoga-as.a.run.app/prescreen/patient/upsert
+            - name: WAITING_LIST_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: waiting-list-api-key-config
+                  key: waiting-list-api-key	
