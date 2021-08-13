@@ -16,6 +16,14 @@ data:
     </source>
 
     <filter LoggingTopic>
+      @type grep
+      <exclude>
+        key log_processed
+        pattern /^\s*$/
+      </exclude>
+    </filter>
+    
+    <filter LoggingTopic>
       @type record_transformer
       enable_ruby
       <record>
