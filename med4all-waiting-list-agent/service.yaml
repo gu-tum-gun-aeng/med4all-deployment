@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: med4all-waiting-list-agent-service
-  namespace: default
-spec:
-  selector:
-    app: med4all-waiting-list-agent
-  type: ClusterIP
