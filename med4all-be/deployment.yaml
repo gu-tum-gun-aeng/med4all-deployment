@@ -43,3 +43,15 @@ spec:
                 secretKeyRef:
                   name: nexmo-access-key
                   key: api-secret
+
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-access-key
+                  key: username
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-access-key
+                  key: password
