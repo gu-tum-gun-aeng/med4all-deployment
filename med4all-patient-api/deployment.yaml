@@ -26,5 +26,5 @@ spec:
             - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: secretKey
+                  name: secret-key
                   key: secretKey
