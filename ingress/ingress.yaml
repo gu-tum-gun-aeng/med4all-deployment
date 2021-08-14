@@ -15,6 +15,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: med4all-patient-api-service
+                name: med4all-be-service
                 port:
                   number: 80
