@@ -18,9 +18,13 @@ spec:
           image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-patient-api:v0.2.1
           ports:
             - containerPort: 8000
-
           env:
             - name: HOST
               value: "0.0.0.0"
             - name: PORT
               value: "8000"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secretKey
+                  key: secretKey
