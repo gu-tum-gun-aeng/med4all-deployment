@@ -20,14 +20,26 @@ spec:
             - containerPort: 8000
 
           env:
-          - name: S3_ACCESS_KEY_ID
-            valueFrom:
-              secretKeyRef:
-                name: aws-secret-config
-                key: aws_access_key_id
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-access-secret
+                  key: aws_access_key_id
 
-          - name: S3_SECRET_KEY
-            valueFrom:
-              secretKeyRef:
-                name: aws-secret-config
-                key: aws_secret_access_key
+            - name: S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-access-secret
+                  key: aws_secret_access_key
+
+            - name: NEXMO_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: nexmo-access-key
+                  key: api-key
+
+            - name: NEXMO_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: nexmo-access-key
+                  key: api-secret
