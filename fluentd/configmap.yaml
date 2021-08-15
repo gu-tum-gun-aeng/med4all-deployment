@@ -8,11 +8,13 @@ metadata:
 data:
   fluent.conf: |
     <source>
-      @type kafka
+      @type kafka_group
       brokers b-3.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-1.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094
-      ssl_ca_certs_from_system true
+      consumer_group fluentd-logging-consumer
       topics LoggingTopic
       format json
+      time_source record
+      start_from_beginning false
     </source>
 
     <filter LoggingTopic>

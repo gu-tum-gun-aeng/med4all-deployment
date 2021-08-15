@@ -4,7 +4,7 @@ metadata:
   name: fluentd-influx
   namespace: fluentd-logs
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       k8s-app: fluentd-influx
