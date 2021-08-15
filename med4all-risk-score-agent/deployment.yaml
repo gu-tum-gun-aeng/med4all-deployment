@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-risk-score-agent-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-risk-score-agent:v0.1.5
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-risk-score-agent:v0.2.1
 
           env:
             - name: KAFKA_BROKER_LIST

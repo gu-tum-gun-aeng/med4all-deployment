@@ -28,4 +28,4 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: waiting-list-api-key-config
-                  key: waiting-list-api-key	
+                  key: waiting-list-api-key

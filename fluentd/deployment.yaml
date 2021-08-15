@@ -4,7 +4,7 @@ metadata:
   name: fluentd-influx
   namespace: fluentd-logs
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       k8s-app: fluentd-influx
@@ -20,6 +20,7 @@ spec:
       initContainers:
         - name: copy-fluentd-config
           image: busybox
+          imagePullPolicy: IfNotPresent
           command: ['sh', '-c', 'cp /config-volume/..data/* /fluentd/etc']
           volumeMounts:
             - name: config-volume
@@ -28,6 +29,7 @@ spec:
               mountPath: /fluentd/etc
         - name: update-log-driver
           image: busybox
+          imagePullPolicy: IfNotPresent
           command: ['sh','-c','']
       containers:
         - name: fluentd-influx
