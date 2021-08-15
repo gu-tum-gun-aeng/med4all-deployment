@@ -36,7 +36,6 @@ data:
         http_target ${record["log_processed"]["http.target"]}
         app_name ${record["log_processed"]["name"]}
         app_target ${record["log_processed"]["target"]}
-        elapsed_milliseconds ${record["log_processed"]["elapsed_milliseconds"].to_f}
       </record>
     </filter>
 
@@ -67,6 +66,14 @@ data:
         region ap-southeast-1
       </endpoint>
     </match>
+
+    <match metric>
+      @type record_transformer
+      enable_ruby
+      <record>
+        elapsed_milliseconds ${record["log_processed"]["elapsed_milliseconds"].to_f}
+      </record>
+    </filter>
 
     <match metric>
       @type copy
