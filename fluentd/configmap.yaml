@@ -15,6 +15,7 @@ data:
       format json
       time_source record
       start_from_beginning false
+      ssl_ca_certs_from_system true
     </source>
 
     <filter LoggingTopic>
