@@ -55,3 +55,9 @@ spec:
                 secretKeyRef:
                   name: rds-access-key
                   key: password
+
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: med4all-be
+                  key: jwt-secret-key
