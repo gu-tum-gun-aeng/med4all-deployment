@@ -35,7 +35,7 @@ data:
         http_target ${record["log_processed"]["http.target"]}
         app_name ${record["log_processed"]["name"]}
         app_target ${record["log_processed"]["target"]}
-        elapsed_milliseconds ${record["log_processed"]["elapsed_milliseconds"].to_f}
+        elapsed_milliseconds ${record["log_processed"]["elapsed_milliseconds"]}
       </record>
     </filter>
 
