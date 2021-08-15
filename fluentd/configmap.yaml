@@ -73,7 +73,7 @@ data:
       <record>
         elapsed_milliseconds ${record["log_processed"]["elapsed_milliseconds"].to_f}
       </record>
-    </filter>
+    </match>
 
     <match metric>
       @type copy
