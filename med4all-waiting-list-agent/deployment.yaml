@@ -23,7 +23,7 @@ spec:
             - name: KAFKA_GROUP_ID
               value: med4all-waiting-list-agent
             - name: WAITING_LIST_API_URL
-              value: https://covid-waiting-list-y6gdj3xoga-as.a.run.app/prescreen/patient/upsert
+              value: https://covid-waiting-list-y6gdj3xoga-as.a.run.app/api/upsert
             - name: WAITING_LIST_API_KEY
               valueFrom:
                 secretKeyRef:
