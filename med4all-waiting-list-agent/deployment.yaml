@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-waiting-list-agent-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-waiting-list-agent:v0.2.9
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-waiting-list-agent:v0.2.10
 
           env:
             - name: KAFKA_BROKER_LIST
