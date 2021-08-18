@@ -37,7 +37,7 @@ jobs:
         run: argocd login --username admin --password $( kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo) --plaintext --port-forward --port-forward-namespace argocd
 
       - name: Add med4all-eks-cluster to argocd
-        run: argocd cluster add arn:aws:eks:ap-southeast-1:607128906826:cluster/med4all-eks-cluster --plaintext --port-forward-namespace argocd --upsert
+        run: argocd cluster add arn:aws:eks:ap-southeast-1:607128906826:cluster/med4all-eks-cluster-dev --plaintext --port-forward-namespace argocd --upsert
 
       - name: Apply app-of-apps manifest
         run: kubectl apply -f app-of-apps.yaml
