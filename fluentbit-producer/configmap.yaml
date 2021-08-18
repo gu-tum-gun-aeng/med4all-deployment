@@ -52,7 +52,7 @@ data:
     [OUTPUT]
         Name            kafka
         Match           *
-        Brokers        	b-3.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-1.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094
+        Brokers        	b-1.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-3.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094
         Topics          LoggingTopic
         rdkafka.security.protocol ssl
 
