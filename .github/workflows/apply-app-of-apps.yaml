@@ -28,10 +28,10 @@ jobs:
           options: --client
 
       - name: Get kubeconfig for public cluster
-        run: aws eks --region ap-southeast-1 update-kubeconfig --name med4all-eks-cluster
+        run: aws eks --region ap-southeast-1 update-kubeconfig --name med4all-eks-cluster-dev
 
       - name: Get kubeconfig for local cluster and use as current context
-        run: aws eks --region ap-southeast-1 update-kubeconfig --name med4all-local-eks-cluster
+        run: aws eks --region ap-southeast-1 update-kubeconfig --name med4all-local-eks-cluster-dev
 
       - name: Login to ArgoCd via kubernetes port forward
         run: argocd login --username admin --password $( kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo) --plaintext --port-forward --port-forward-namespace argocd
