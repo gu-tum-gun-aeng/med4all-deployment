@@ -8,12 +8,12 @@ metadata:
 spec:
   destination:
     namespace: default
-    name: arn:aws:eks:ap-southeast-1:607128906826:cluster/med4all-eks-cluster
+    name: arn:aws:eks:ap-southeast-1:607128906826:cluster/med4all-eks-cluster-dev
   project: default
   source:
     path: med4all-risk-score-agent
     repoURL: https://github.com/gu-tum-gun-aeng/med4all-deployment
-    targetRevision: main
+    targetRevision: develop
   syncPolicy:
     automated:
       selfHeal: true
