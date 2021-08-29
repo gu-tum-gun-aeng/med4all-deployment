@@ -15,11 +15,11 @@ spec:
     spec:
       containers:
         - name: med4all-patient-api-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-patient-api:v0.4.6
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-patient-api:v0.4.7
           ports:
             - containerPort: 8000
           env:
-            - name: NODE_ENV 
+            - name: NODE_ENV
               value: production
             - name: HOST
               value: "0.0.0.0"
