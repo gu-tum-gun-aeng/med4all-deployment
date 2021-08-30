@@ -13,7 +13,6 @@ data:
         Flush         1
         Log_Level     info
         Daemon        off
-        storage.path  /var/log/flb-storage/
         Parsers_File  parsers.conf
         HTTP_Server   On
         HTTP_Listen   0.0.0.0
@@ -30,10 +29,9 @@ data:
         Path              /var/log/containers/*.log
         Parser            docker
         DB                /var/log/flb_kube.db
-        Mem_Buf_Limit     20MB
+        Mem_Buf_Limit     50MB
         Skip_Long_Lines   On
         Refresh_Interval  5
-        storage.type      filesystem
 
   filter-kubernetes.conf: |
     [FILTER]
