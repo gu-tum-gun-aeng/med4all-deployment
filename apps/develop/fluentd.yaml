@@ -1,21 +1,22 @@
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana-deployment
+  name: fluentd-deployment
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
-    name: in-cluster
+    namespace: fluentd-logs
+    name: arn:aws:eks:ap-southeast-1:607128906826:cluster/med4all-eks-cluster-dev
   project: default
   source:
-    path: grafana
+    path: fluentd
     repoURL: https://github.com/gu-tum-gun-aeng/med4all-deployment
-    targetRevision: main
+    targetRevision: develop
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true

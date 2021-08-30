@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: applications
+  name: ingress-deployment
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
+    namespace: default
+    name: arn:aws:eks:ap-southeast-1:607128906826:cluster/med4all-eks-cluster-dev
   project: default
   source:
-    path: apps/main
+    path: ingress
     repoURL: https://github.com/gu-tum-gun-aeng/med4all-deployment
-    targetRevision: main
+    targetRevision: develop
   syncPolicy:
     automated:
       selfHeal: true

@@ -16,5 +16,5 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ap-southeast-1
-          cluster_name: med4all-local-eks-cluster
+          cluster_name: med4all-local-eks-cluster-dev
           args: delete -f app-of-apps.yaml

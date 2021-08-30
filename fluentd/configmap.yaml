@@ -9,7 +9,7 @@ data:
   fluent.conf: |
     <source>
       @type kafka_group
-      brokers b-3.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-1.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094
+      brokers b-1.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-3.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094
       consumer_group fluentd-logging-consumer
       topics LoggingTopic
       format json
@@ -62,7 +62,7 @@ data:
         flush_interval 5s
       </buffer>
       <endpoint>
-        url https://vpc-elasticsearch-2ae3cb7-zastc6dcwam6cmeyfzm4iowiey.ap-southeast-1.es.amazonaws.com
+        url https://vpc-elasticsearch-dev-9d00a94-ovdapizinxtx2cnlvmoln2xfim.ap-southeast-1.es.amazonaws.com
         region ap-southeast-1
       </endpoint>
     </match>
@@ -78,7 +78,7 @@ data:
           flush_interval 5s
         </buffer>
         <endpoint>
-          url https://vpc-elasticsearch-2ae3cb7-zastc6dcwam6cmeyfzm4iowiey.ap-southeast-1.es.amazonaws.com
+          url https://vpc-elasticsearch-dev-9d00a94-ovdapizinxtx2cnlvmoln2xfim.ap-southeast-1.es.amazonaws.com
           region ap-southeast-1
         </endpoint>
       </store>
