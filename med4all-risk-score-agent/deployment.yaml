@@ -19,7 +19,7 @@ spec:
 
           env:
             - name: KAFKA_BROKER_LIST
-              value: b-1.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-3.med4all-msk-clust.zvxx2j.c3.kafka.ap-southeast-1.amazonaws.com:9094
+              value: b-1.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-2.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094,b-3.med4all-msk-clust.kh3jrm.c3.kafka.ap-southeast-1.amazonaws.com:9094
             - name: KAFKA_GROUP_ID
               value: med4all-risk-score-agent
             - name: RISK_SCORE_API_URL
