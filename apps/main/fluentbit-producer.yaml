@@ -1,20 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: applications
+  name: fluentbit-deployment
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
+    namespace: logging-producer
+    name: arn:aws:eks:ap-southeast-1:607128906826:cluster/med4all-eks-cluster
   project: default
   source:
-    path: apps/main
+    path: fluentbit-producer
     repoURL: https://github.com/gu-tum-gun-aeng/med4all-deployment
     targetRevision: main
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true
