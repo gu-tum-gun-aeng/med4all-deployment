@@ -43,9 +43,6 @@ spec:
                 secretKeyRef:
                   name: nexmo-access-key
                   key: api-secret
-                  
-            - name: DB_HOST
-              value: med4all-aurora-cluster-dev.cluster-cjhoqgorojei.ap-southeast-1.rds.amazonaws.com
 
             - name: DB_USERNAME
               valueFrom:
