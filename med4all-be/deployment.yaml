@@ -20,6 +20,9 @@ spec:
             - containerPort: 8000
 
           env:
+            - name: ENV
+              value: dev
+
             - name: S3_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
