@@ -15,11 +15,14 @@ spec:
     spec:
       containers:
         - name: med4all-be-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-be:v0.16.5
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-be:v0.16.6
           ports:
             - containerPort: 8000
 
           env:
+            - name: ENV
+              value: prod
+
             - name: S3_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
