@@ -20,7 +20,7 @@ spec:
             - containerPort: 8000
           env:
             - name: NODE_ENV
-              value: production
+              value: development
             - name: HOST
               value: "0.0.0.0"
             - name: PORT
