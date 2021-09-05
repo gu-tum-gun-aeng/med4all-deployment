@@ -64,3 +64,9 @@ spec:
                 secretKeyRef:
                   name: med4all-be
                   key: jwt-secret-key
+
+            - name: COLINK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: colink
+                  key: colink-token
