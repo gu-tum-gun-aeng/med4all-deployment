@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-patient-api-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-patient-api:v0.6.1
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-patient-api:v0.6.3
           ports:
             - containerPort: 8000
           env:
