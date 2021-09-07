@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-be-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-be:v0.23.0
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-be:v0.23.1
           ports:
             - containerPort: 8000
 
