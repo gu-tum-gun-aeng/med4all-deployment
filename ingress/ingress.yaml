@@ -18,3 +18,15 @@ spec:
                 name: med4all-be-service
                 port:
                   number: 80
+
+    - host: med4all.care
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: med4all-site-service
+                port:
+                  number: 80
+
