@@ -19,7 +19,7 @@ spec:
                 port:
                   number: 80
                   
-    - host: dev.med4all.care
+    - host: dev.app.med4all.care
       http:
         paths:
           - path: /?(.*)
