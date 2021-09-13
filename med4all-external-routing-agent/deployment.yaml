@@ -24,7 +24,14 @@ spec:
               value: med4all-external-routing-agent
             - name: COLINK_API_URL
               value: https://stg-cl.gbdi.cloud/external/api/backend/hotline/insert-records
+            - name: WISIBLE_API_URL
+              value: https://api-covid.wisible.com/v2/addPatient
             - name: COLINK_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: external-routing-agent-api-key-config
+                  key: colink-token
+            - name: WISIBLE_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: external-routing-agent-api-key-config
