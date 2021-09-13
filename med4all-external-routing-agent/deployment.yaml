@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-external-routing-agent-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-external-routing-agent:v0.0.8
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-external-routing-agent:v0.0.20
 
           env:
             - name: KAFKA_BROKER_LIST
@@ -24,8 +24,20 @@ spec:
               value: med4all-external-routing-agent
             - name: COLINK_API_URL
               value: https://stg-cl.gbdi.cloud/external/api/backend/hotline/insert-records
+            - name: WISIBLE_API_URL
+              value: https://api-covid.wisible.com/v2/addPatient
             - name: COLINK_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: external-routing-agent-api-key-config
                   key: colink-token
+            - name: WISIBLE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: external-routing-agent-wisible-config
+                  key: x-api-key
+            - name: WISIBLE_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: external-routing-agent-wisible-config
+                  key: cookie
