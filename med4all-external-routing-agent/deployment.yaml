@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-external-routing-agent-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-external-routing-agent:v0.0.8
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-external-routing-agent:v0.0.9
 
           env:
             - name: KAFKA_BROKER_LIST
