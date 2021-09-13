@@ -34,5 +34,10 @@ spec:
             - name: WISIBLE_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: external-routing-agent-api-key-config
-                  key: colink-token
+                  name: external-routing-agent-wisible-config
+                  key: x-api-key
+            - name: WISIBLE_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: external-routing-agent-wisible-config
+                  key: cookie
