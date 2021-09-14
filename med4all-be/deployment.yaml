@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: med4all-be-pod
-          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-be:v0.30.3
+          image: 607128906826.dkr.ecr.ap-southeast-1.amazonaws.com/med4all-be:v0.30.4
           ports:
             - containerPort: 8000
 
@@ -68,5 +68,5 @@ spec:
             - name: COLINK_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: colink
+                  name: colink-v1.0.0
                   key: colink-token
