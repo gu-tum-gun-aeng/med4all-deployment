@@ -27,7 +27,7 @@ spec:
             - name: WISIBLE_API_URL
               value: https://api-covid.wisible.com/v2/addPatient
             - name: PED_URL
-              value: https://hooks.zapier.com/hooks/catch/9390346/b62jsuk
+              value: https://hooks.zapier.com/hooks/catch/9390346/b61ax9c
             - name: COLINK_API_KEY
               valueFrom:
                 secretKeyRef:
